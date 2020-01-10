@@ -1,0 +1,99 @@
+{
+  "name": "frklft",
+  "version": "0.1.0",
+  "description": "Build pipeline for FRKLFT - www.frklft.tires",
+  "keywords": [
+    "javascript minification",
+    "css minification",
+    "asset caching",
+    "build pipeline"
+  ],
+  "homepage": "https://www.frklft.tires",
+  "bugs": "https://github.com/lopopolo/www.frklft.tires/issues",
+  "license": "MIT",
+  "author": {
+    "name": "Ryan Lopopolo",
+    "email": "rjl@hyperbo.la",
+    "url": "https://hyperbo.la"
+  },
+  "contributors": [
+    {
+      "name": "Ryan Lopopolo",
+      "email": "rjl@hyperbo.la",
+      "url": "https://hyperbo.la"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lopopolo/www.frklft.tires.git"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.1",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.4.1",
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-import-resolver-webpack": "^0.12.0",
+    "eslint-plugin-html": "^6.0.0",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-react": "^7.4.0",
+    "file-loader": "^5.0.2",
+    "html-webpack-inline-source-plugin": "^0.0.10",
+    "html-webpack-plugin": "^3.2.0",
+    "image-webpack-loader": "^6.0.0",
+    "jimp": "^0.9.3",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "prettier": "^1.15.3",
+    "responsive-loader": "^1.2.0",
+    "style-loader": "^1.1.2",
+    "terser-webpack-plugin": "^2.3.1",
+    "url-loader": "^3.0.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.222.1",
+    "bootstrap": "^4.4.1",
+    "jquery": "^3.4.1",
+    "mini-css-extract-plugin": "^0.9.0",
+    "popper.js": "^1.16.0"
+  },
+  "scripts": {
+    "lint": "eslint --ignore-path .gitignore --fix .",
+    "fmt": "prettier --ignore-path .gitignore --write '**/*.{babelrc,css,eslintrc,html,js,json,md}'",
+    "serve": "webpack-dev-server --mode development --open"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "commonjs": true,
+      "es6": true,
+      "node": true,
+      "jquery": true
+    },
+    "extends": [
+      "airbnb",
+      "prettier",
+      "plugin:import/errors",
+      "plugin:import/warnings"
+    ],
+    "plugins": [
+      "html",
+      "import",
+      "prettier"
+    ],
+    "parser": "babel-eslint"
+  }
+}

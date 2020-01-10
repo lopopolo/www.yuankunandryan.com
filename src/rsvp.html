@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-155742915-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "UA-155742915-1");
+    </script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="RSVP for Yuankun and Ryan's Wedding in Seattle on August 8, 2020."
+    />
+    <meta property="og:title" content="Yuankun and Ryan ❤️" />
+    <meta property="og:site_name" content="yuankunandryan.com" />
+    <meta
+      property="og:url"
+      content="https://www.yuankunandryan.com/rsvp/<%= htmlWebpackPlugin.options.rsvpSlug %>"
+    />
+    <meta
+      name="og:description"
+      content="RSVP for Yuankun and Ryan's Wedding in Seattle on August 8, 2020."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:image"
+      content="https://www.yuankunandryan.com/rsvp-card-hero.jpg"
+    />
+    <title>Yuankun and Ryan ❤️</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <nav class="navbar navbar-light bg-light">
+          <a class="navbar-brand mb-0 h1" href="/">
+            <img
+              src="<%= require('./navbar-logo.png').default %>"
+              width="30"
+              height="30"
+              class="d-inline-block align-top"
+              alt="Yuankun and Ryan"
+            />
+            Yuankun and Ryan
+          </a>
+          <ul class="nav nav-pills pull-right">
+            <li class="nav-item"><a class="nav-link" href="/">Details</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="mx-auto">
+      <h2 class="text-center my-3">RSVP for Yuankun and Ryan's Wedding</h2>
+      <p>Attendees: <%= htmlWebpackPlugin.options.attendees %></p>
+      <form
+        id="rsvp-form-accept"
+        action="https://ut79woss00.execute-api.us-west-2.amazonaws.com/prod/api"
+        method="POST"
+      >
+        <input
+          type="hidden"
+          name="slug"
+          value="<%= htmlWebpackPlugin.options.rsvpSlug %>"
+        />
+        <input type="hidden" name="response" value="attending" />
+        <% if (htmlWebpackPlugin.options.canBringPlusOne) { %>
+        <label for="plus-one">Are you bringing a plus one?</label>
+        <input type="checkbox" id="plus-one" name="plus-one" />
+        <% } %>
+        <button
+          type="button"
+          class="d-block mx-auto mw-100 mb-1 btn btn-primary btn-lg g-recaptcha"
+          style="width: 500px;"
+          data-sitekey="6LekWs0UAAAAAHk62tnU7hND2o1TWhjDxVOhWx24"
+          data-callback="acceptInvitation"
+        >
+          Accept
+        </button>
+      </form>
+      <form id="rsvp-form-decline">
+        <button
+          type="button"
+          class="d-block mx-auto mw-50 mb-1 btn btn-secondary g-recaptcha"
+          style="width: 250px;"
+          data-sitekey="6LekWs0UAAAAAHk62tnU7hND2o1TWhjDxVOhWx24"
+          data-callback="declineInvitation"
+        >
+          Regretfully Decline
+        </button>
+      </form>
+      <p id="rsvp-thanks" style="display: none">thank you</p>
+    </div>
+    </div>
+  </body>
+</html>
