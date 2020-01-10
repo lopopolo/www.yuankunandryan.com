@@ -11,8 +11,19 @@ const plugins = [
     chunkFilename: "[id].css"
   }),
   new HtmlWebPackPlugin({
-    template: "rsvp.html",
+    template: "index.html",
     filename: "index.html",
+    minify: {
+      collapseWhitespace: true,
+      minifyCSS: true,
+      minifyJS: true,
+      removeComments: true,
+      useShortDoctype: true
+    }
+  }),
+  new HtmlWebPackPlugin({
+    template: "rsvp.html",
+    filename: "rsvp/index.html",
     rsvpSlug: "test02",
     minify: {
       collapseWhitespace: true,
@@ -63,7 +74,7 @@ module.exports = (env, argv) => {
           use: [cssLoader, "css-loader"]
         },
         {
-          test: /img\/save-the-date\/.+\.(jpe?g|png)$/i,
+          test: /img\/(index|save-the-date)\/.+\.(jpe?g|png)$/i,
           loader: 'responsive-loader',
           options: {
             sizes: [500, 1000, 1500, 2000]
@@ -71,7 +82,7 @@ module.exports = (env, argv) => {
         },
         {
           test: /\.(jpe?g|png|gif)$/,
-          exclude: /img\/save-the-date/,
+          exclude: /img\/(index|save-the-date)/,
           use: ["url-loader", "image-webpack-loader"]
         }
       ]
