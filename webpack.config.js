@@ -1,4 +1,5 @@
 const path = require("path");
+const CopyPlugin = require("copy-webpack-plugin");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const HtmlWebpackInlineSourcePlugin = require("html-webpack-inline-source-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
@@ -6,6 +7,9 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 const plugins = [
+  new CopyPlugin([
+    { from: path.resolve(__dirname, "CNAME") },
+  ]),
   new MiniCssExtractPlugin({
     filename: "[hash].css",
     chunkFilename: "[id].css"
