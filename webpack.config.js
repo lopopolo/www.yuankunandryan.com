@@ -7,9 +7,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 const plugins = [
-  new CopyPlugin([
-    { from: path.resolve(__dirname, "CNAME") },
-  ]),
+  new CopyPlugin([{ from: path.resolve(__dirname, "CNAME") }]),
   new MiniCssExtractPlugin({
     filename: "[hash].css",
     chunkFilename: "[id].css"
@@ -17,18 +15,6 @@ const plugins = [
   new HtmlWebPackPlugin({
     template: "index.html",
     filename: "index.html",
-    minify: {
-      collapseWhitespace: true,
-      minifyCSS: true,
-      minifyJS: true,
-      removeComments: true,
-      useShortDoctype: true
-    }
-  }),
-  new HtmlWebPackPlugin({
-    template: "rsvp.html",
-    filename: "rsvp/index.html",
-    rsvpSlug: "test02",
     minify: {
       collapseWhitespace: true,
       minifyCSS: true,
@@ -79,7 +65,7 @@ module.exports = (env, argv) => {
         },
         {
           test: /img\/(index|save-the-date)\/.+\.(jpe?g|png)$/i,
-          loader: 'responsive-loader',
+          loader: "responsive-loader",
           options: {
             sizes: [500, 1000, 1500, 2000]
           }
