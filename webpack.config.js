@@ -85,8 +85,12 @@ module.exports = (env, argv) => {
           }
         },
         {
+          test: /img\/card\/.+\.(jpe?g|png)$/i,
+          use: ["file-loader", "image-webpack-loader"]
+        },
+        {
           test: /\.(jpe?g|png|gif)$/,
-          exclude: /img\/(index|save-the-date)/,
+          exclude: /img\/(index|save-the-date|card)/,
           use: ["url-loader", "image-webpack-loader"]
         }
       ]
