@@ -74,8 +74,8 @@ module.exports = (env, argv) => {
           }
         },
         {
-          test: /\.css$/,
-          use: [cssLoader, "css-loader"]
+          test: /\.s?css$/,
+          use: [cssLoader, "css-loader", "sass-loader"]
         },
         {
           test: /img\/(index|save-the-date)\/.+\.(jpe?g|png)$/i,
