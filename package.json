@@ -72,7 +72,9 @@
   "scripts": {
     "lint": "eslint --ignore-path .gitignore --fix .",
     "fmt": "prettier --ignore-path .gitignore --write '**/*.{babelrc,css,eslintrc,html,js,json,md}'",
-    "serve": "webpack-dev-server --mode development --open"
+    "serve": "webpack-dev-server --mode development --open",
+    "build": "webpack -p --mode production",
+    "deploy": "gh-pages --message '[skip ci] build site' --dist dist"
   },
   "babel": {
     "presets": [
