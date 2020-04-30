@@ -65,7 +65,7 @@
   "dependencies": {
     "aws-sdk": "^2.222.1",
     "bootstrap": "^4.4.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "mini-css-extract-plugin": "^0.9.0",
     "popper.js": "^1.16.0"
   },
