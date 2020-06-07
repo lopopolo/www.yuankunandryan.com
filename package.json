@@ -31,28 +31,21 @@
     "@babel/core": "^7.7.7",
     "@babel/preset-env": "^7.7.7",
     "babel-core": "^6.26.0",
-    "babel-eslint": "^8.2.1",
     "babel-loader": "^8.0.6",
     "copy-webpack-plugin": "^5.1.1",
     "css-loader": "^3.4.1",
     "eslint": "^5.3.0",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-config-prettier": "^3.3.0",
     "eslint-import-resolver-webpack": "^0.12.0",
     "eslint-plugin-html": "^6.0.0",
     "eslint-plugin-import": "^2.19.1",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
-    "eslint-plugin-prettier": "^3.0.1",
-    "eslint-plugin-react": "^7.4.0",
     "file-loader": "^5.0.2",
     "gh-pages": "^2.2.0",
-    "html-webpack-inline-source-plugin": "^0.0.10",
     "html-webpack-plugin": "^3.2.0",
     "image-webpack-loader": "^6.0.0",
     "jimp": "^0.9.3",
+    "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.13.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
-    "prettier": "^1.15.3",
     "responsive-loader": "^1.2.0",
     "sass-loader": "^8.0.1",
     "style-loader": "^1.1.2",
@@ -66,15 +59,7 @@
     "aws-sdk": "^2.222.1",
     "bootstrap": "^4.4.1",
     "jquery": "^3.4.1",
-    "mini-css-extract-plugin": "^0.9.0",
     "popper.js": "^1.16.0"
-  },
-  "scripts": {
-    "lint": "eslint --ignore-path .gitignore --fix .",
-    "fmt": "prettier --ignore-path .gitignore --write '**/*.{babelrc,css,eslintrc,html,js,json,md}'",
-    "serve": "webpack-dev-server --mode development --open",
-    "build": "webpack -p --mode production",
-    "deploy": "gh-pages --message '[skip ci] build site' --dist dist"
   },
   "babel": {
     "presets": [
@@ -89,17 +74,33 @@
       "node": true,
       "jquery": true
     },
+    "plugins": [
+      "html",
+      "import"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 8,
+      "sourceType": "module"
+    },
     "extends": [
-      "airbnb",
-      "prettier",
+      "eslint:recommended",
       "plugin:import/errors",
       "plugin:import/warnings"
     ],
-    "plugins": [
-      "html",
-      "import",
-      "prettier"
-    ],
-    "parser": "babel-eslint"
+    "settings": {
+      "import/resolver": {
+        "node": {},
+        "webpack": {}
+      }
+    }
+  },
+  "scripts": {
+    "build": "webpack -p --mode production",
+    "dev": "npx webpack-dev-server --mode development",
+    "dev:open": "npx webpack-dev-server --mode development --open",
+    "deploy": "gh-pages --message '[skip ci] build site' --dist dist",
+    "fmt": "npx prettier --write '**/*'",
+    "lint": "npx eslint .",
+    "lint:fix": "npx eslint --fix ."
   }
 }
