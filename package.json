@@ -1,32 +1,21 @@
 {
-  "name": "frklft",
+  "name": "@lopopolo/www.yuankunandryan.com",
   "version": "0.1.0",
-  "description": "Build pipeline for FRKLFT - www.frklft.tires",
+  "description": "Wedding website for Yuankun and Ryan",
   "keywords": [
     "javascript minification",
     "css minification",
     "asset caching",
     "build pipeline"
   ],
-  "homepage": "https://www.frklft.tires",
-  "bugs": "https://github.com/lopopolo/www.frklft.tires/issues",
+  "homepage": "https://www.yuankunandryan.com",
+  "bugs": "https://github.com/lopopolo/www.yuankunandryan.com/issues",
   "license": "MIT",
-  "author": {
-    "name": "Ryan Lopopolo",
-    "email": "rjl@hyperbo.la",
-    "url": "https://hyperbo.la"
-  },
+  "author": "Ryan Lopopolo <rjl@hyperbo.la> (https://hyperbo.la/)",
   "contributors": [
-    {
-      "name": "Ryan Lopopolo",
-      "email": "rjl@hyperbo.la",
-      "url": "https://hyperbo.la"
-    }
+    "Ryan Lopopolo <rjl@hyperbo.la> (https://hyperbo.la/)"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/lopopolo/www.frklft.tires.git"
-  },
+  "repository": "github:lopopolo/www.yuankunandryan.com",
   "devDependencies": {
     "@babel/core": "^7.7.7",
     "@babel/preset-env": "^7.7.7",
