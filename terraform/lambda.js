@@ -9,7 +9,7 @@ exports.handler = (event, context, callback) => {
     const postData = querystring.stringify({
       secret: process.env.RECAPTCHA_SECRET_KEY,
       response: inputData["g-recaptcha-response"],
-      remoteip: event.requestContext.identity.sourceIp
+      remoteip: event.requestContext.identity.sourceIp,
     });
 
     const options = {
@@ -19,13 +19,13 @@ exports.handler = (event, context, callback) => {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
-        "Content-Length": Buffer.byteLength(postData)
-      }
+        "Content-Length": Buffer.byteLength(postData),
+      },
     };
 
-    const req = https.request(options, res => {
+    const req = https.request(options, (res) => {
       res.setEncoding("utf8");
-      res.on("data", chunk => {
+      res.on("data", (chunk) => {
         try {
           const sns = new AWS.SNS();
           const captchaResponse = JSON.parse(chunk);
@@ -33,7 +33,7 @@ exports.handler = (event, context, callback) => {
             delete inputData["g-recaptcha-response"];
 
             const messageLines = [];
-            Object.keys(inputData).forEach(key => {
+            Object.keys(inputData).forEach((key) => {
               messageLines.push(`${key}:`);
               messageLines.push(`        ${inputData[key]}`);
               messageLines.push("");
@@ -43,7 +43,7 @@ exports.handler = (event, context, callback) => {
             const params = {
               Message: message,
               Subject: "Yuankun and Ryan Wedding RSVP",
-              TopicArn: process.env.SNS_TOPIC
+              TopicArn: process.env.SNS_TOPIC,
             };
 
             sns.publish(params, (err, response) => {
@@ -51,9 +51,9 @@ exports.handler = (event, context, callback) => {
                 statusCode: "200",
                 headers: {
                   "Access-Control-Allow-Origin": "*", // Required for CORS support to work
-                  "Access-Control-Allow-Credentials": true // Required for cookies, authorization headers with HTTPS
+                  "Access-Control-Allow-Credentials": true, // Required for cookies, authorization headers with HTTPS
                 },
-                body: JSON.stringify(response)
+                body: JSON.stringify(response),
               });
             });
           } else {
@@ -61,9 +61,9 @@ exports.handler = (event, context, callback) => {
               statusCode: "500",
               headers: {
                 "Access-Control-Allow-Origin": "*", // Required for CORS support to work
-                "Access-Control-Allow-Credentials": true // Required for cookies, authorization headers with HTTPS
+                "Access-Control-Allow-Credentials": true, // Required for cookies, authorization headers with HTTPS
               },
-              body: JSON.stringify({ message: "Invalid recaptcha" })
+              body: JSON.stringify({ message: "Invalid recaptcha" }),
             });
           }
         } catch (err) {
@@ -71,22 +71,22 @@ exports.handler = (event, context, callback) => {
             statusCode: "500",
             headers: {
               "Access-Control-Allow-Origin": "*", // Required for CORS support to work
-              "Access-Control-Allow-Credentials": true // Required for cookies, authorization headers with HTTPS
+              "Access-Control-Allow-Credentials": true, // Required for cookies, authorization headers with HTTPS
             },
-            body: JSON.stringify({ err: err.toString, stack: err.stack })
+            body: JSON.stringify({ err: err.toString, stack: err.stack }),
           });
         }
       });
     });
 
-    req.on("error", e => {
+    req.on("error", (e) => {
       callback(null, {
         statusCode: "500",
         headers: {
           "Access-Control-Allow-Origin": "*", // Required for CORS support to work
-          "Access-Control-Allow-Credentials": true // Required for cookies, authorization headers with HTTPS
+          "Access-Control-Allow-Credentials": true, // Required for cookies, authorization headers with HTTPS
         },
-        body: JSON.stringify({ message: e.message })
+        body: JSON.stringify({ message: e.message }),
       });
     });
 
@@ -98,9 +98,9 @@ exports.handler = (event, context, callback) => {
       statusCode: "500",
       headers: {
         "Access-Control-Allow-Origin": "*", // Required for CORS support to work
-        "Access-Control-Allow-Credentials": true // Required for cookies, authorization headers with HTTPS
+        "Access-Control-Allow-Credentials": true, // Required for cookies, authorization headers with HTTPS
       },
-      body: JSON.stringify({ err: err.toString, stack: err.stack })
+      body: JSON.stringify({ err: err.toString, stack: err.stack }),
     });
   }
 };
