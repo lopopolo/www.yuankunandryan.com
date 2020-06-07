@@ -6,7 +6,6 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 const plugins = [
-  new CopyPlugin([{ from: path.resolve(__dirname, "CNAME") }]),
   new MiniCssExtractPlugin({
     filename: "[hash].css",
     chunkFilename: "[id].css",
