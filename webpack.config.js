@@ -1,16 +1,14 @@
 const path = require("path");
-const CopyPlugin = require("copy-webpack-plugin");
+const CnameWebpackPlugin = require("cname-webpack-plugin");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-const HtmlWebpackInlineSourcePlugin = require("html-webpack-inline-source-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 const plugins = [
-  new CopyPlugin([{ from: path.resolve(__dirname, "CNAME") }]),
   new MiniCssExtractPlugin({
     filename: "[hash].css",
-    chunkFilename: "[id].css"
+    chunkFilename: "[id].css",
   }),
   new HtmlWebPackPlugin({
     template: "index.html",
@@ -20,8 +18,8 @@ const plugins = [
       minifyCSS: true,
       minifyJS: true,
       removeComments: true,
-      useShortDoctype: true
-    }
+      useShortDoctype: true,
+    },
   }),
   new HtmlWebPackPlugin({
     template: "save-the-date.html",
@@ -31,10 +29,12 @@ const plugins = [
       minifyCSS: true,
       minifyJS: true,
       removeComments: true,
-      useShortDoctype: true
-    }
+      useShortDoctype: true,
+    },
   }),
-  new HtmlWebpackInlineSourcePlugin()
+  new CnameWebpackPlugin({
+    domain: "www.yuankunandryan.com",
+  }),
 ];
 
 module.exports = (env, argv) => {
@@ -48,7 +48,7 @@ module.exports = (env, argv) => {
     output: {
       filename: "[hash].bundle.js",
       path: path.resolve(__dirname, "dist"),
-      publicPath: "/"
+      publicPath: "/",
     },
     module: {
       rules: [
@@ -56,35 +56,35 @@ module.exports = (env, argv) => {
           test: /\.jsx?$/,
           exclude: /node_modules/,
           use: {
-            loader: "babel-loader"
-          }
+            loader: "babel-loader",
+          },
         },
         {
           test: /\.s?css$/,
-          use: [cssLoader, "css-loader", "sass-loader"]
+          use: [cssLoader, "css-loader", "sass-loader"],
         },
         {
           test: /img\/(index|save-the-date)\/.+\.(jpe?g|png)$/i,
           loader: "responsive-loader",
           options: {
-            sizes: [500, 1000, 1500, 2000]
-          }
+            sizes: [500, 1000, 1500, 2000],
+          },
         },
         {
           test: /img\/card\/.+\.(jpe?g|png)$/i,
-          use: ["file-loader", "image-webpack-loader"]
+          use: ["file-loader", "image-webpack-loader"],
         },
         {
           test: /\.(jpe?g|png|gif)$/,
           exclude: /img\/(index|save-the-date|card)/,
-          use: ["url-loader", "image-webpack-loader"]
-        }
-      ]
+          use: ["url-loader", "image-webpack-loader"],
+        },
+      ],
     },
     plugins,
     optimization: {
       minimize: true,
-      minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin()]
-    }
+      minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin()],
+    },
   };
 };
