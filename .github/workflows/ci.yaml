@@ -45,6 +45,19 @@ jobs:
       - name: Lint with eslint
         run: npx eslint .
 
+  python:
+    name: Lint Python
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Ensure python environment
+        uses: actions/setup-python@v2
+
+      - name: Format with black
+        uses: psf/black@stable
+
   text:
     name: Lint and format text
     runs-on: ubuntu-latest
