@@ -14,7 +14,7 @@ target/
 !*.yaml
 !*.yml
 
-terraform/contact-form-cloudformation-stack.yml
+terraform/rsvp/contact-form-cloudformation-stack.yml
 
 **/vendor/*
 !**/vendor/*.md

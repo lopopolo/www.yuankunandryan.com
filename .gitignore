@@ -76,3 +76,4 @@ typings/
 # End of https://www.gitignore.io/api/node,terraform
 
 /dist
+/venv

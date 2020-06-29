@@ -13,4 +13,9 @@ watch = datetime(2020, 6, 27, 10, 15, 0)
 
 adjustment = watch - camera
 
-print(f"Original timestamp: {camera}\nCorrected timestamp: {watch}\nAdjustment: {adjustment}")
+print(
+    f"""\
+Original timestamp: {camera}
+Corrected timestamp: {watch}
+Adjustment: {adjustment}"""
+)
