@@ -19,3 +19,8 @@ Original timestamp: {camera}
 Corrected timestamp: {watch}
 Adjustment: {adjustment}"""
 )
+
+first_photo = datetime(2014, 1, 1, 2, 0, 23)
+adjusted_first_photo = first_photo + adjustment
+
+print(f"Adjust first photo to: {adjusted_first_photo}")
