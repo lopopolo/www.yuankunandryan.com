@@ -19,7 +19,7 @@
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "@babel/preset-env": "^7.11.5",
-    "aws-sdk": "^2.753.0",
+    "aws-sdk": "^2.754.0",
     "babel-loader": "^8.1.0",
     "cname-webpack-plugin": "^2.0.1",
     "css-loader": "^4.3.0",
