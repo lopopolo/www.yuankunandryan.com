@@ -29,6 +29,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           publish_branch: gh-pages
+          cname: www.yuankunandryan.com
           user_name: lopopolo
           user_email: rjl@hyperbo.la
 

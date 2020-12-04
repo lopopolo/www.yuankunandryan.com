@@ -1,5 +1,4 @@
 const path = require("path");
-const CnameWebpackPlugin = require("cname-webpack-plugin");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -13,34 +12,24 @@ const plugins = [
   new HtmlWebPackPlugin({
     template: "index.html",
     filename: "index.html",
-    minify: {
-      collapseWhitespace: true,
-      minifyCSS: true,
-      minifyJS: true,
-      removeComments: true,
-      useShortDoctype: true,
-    },
   }),
   new HtmlWebPackPlugin({
     template: "save-the-date.html",
     filename: "save-the-date/index.html",
-    minify: {
-      collapseWhitespace: true,
-      minifyCSS: true,
-      minifyJS: true,
-      removeComments: true,
-      useShortDoctype: true,
-    },
-  }),
-  new CnameWebpackPlugin({
-    domain: "www.yuankunandryan.com",
   }),
 ];
 
-module.exports = (env, argv) => {
+module.exports = (_env, argv) => {
   let cssLoader = "style-loader";
+  let optimization = {
+    minimize: false,
+  };
   if (argv.mode === "production") {
     cssLoader = MiniCssExtractPlugin.loader;
+    optimization = {
+      minimize: true,
+      minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin()],
+    };
   }
   return {
     context: path.resolve(__dirname, "src"),
@@ -82,9 +71,6 @@ module.exports = (env, argv) => {
       ],
     },
     plugins,
-    optimization: {
-      minimize: true,
-      minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin()],
-    },
+    optimization,
   };
 };
