@@ -35,6 +35,11 @@
     "description": "Area: One-off scripts."
   },
   {
+    "name": "A-security",
+    "color": "f7e101",
+    "description": "Area: security vulnerabilities and unsoundness issues."
+  },
+  {
     "name": "A-terraform",
     "color": "f7e101",
     "description": "Area: Infrastructure as code configuration in terraform."
@@ -98,26 +103,6 @@
     "name": "E-needs-test",
     "color": "02e10c",
     "description": "Call for participation: writing correctness tests."
-  },
-  {
-    "name": "P-blog",
-    "color": "28dcdc",
-    "description": "Site section: Blog."
-  },
-  {
-    "name": "P-contact",
-    "color": "28dcdc",
-    "description": "Site section: Contact page."
-  },
-  {
-    "name": "P-frontpage",
-    "color": "28dcdc",
-    "description": "Site section: Front page."
-  },
-  {
-    "name": "P-lifestream",
-    "color": "28dcdc",
-    "description": "Site section: Lifestream."
   },
   {
     "name": "S-blocked",
