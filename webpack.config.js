@@ -57,7 +57,7 @@ module.exports = (_env, argv) => {
           },
         },
         {
-          test: /img\/card\/.+\.(jpe?g|png)$/i,
+          test: /img\/card\/.+\.(jpe?g|png)$/i, // social images
           type: "asset",
         },
         {
