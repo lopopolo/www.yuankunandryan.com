@@ -1,12 +1,11 @@
 const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 const plugins = [
   new MiniCssExtractPlugin({
-    filename: "[hash].css",
+    filename: "[name].[contenthash].css",
     chunkFilename: "[id].css",
   }),
   new HtmlWebPackPlugin({
@@ -23,19 +22,19 @@ module.exports = (_env, argv) => {
   let cssLoader = "style-loader";
   let optimization = {
     minimize: false,
+    chunkIds: "deterministic",
+    moduleIds: "deterministic",
   };
   if (argv.mode === "production") {
     cssLoader = MiniCssExtractPlugin.loader;
-    optimization = {
-      minimize: true,
-      minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin()],
-    };
+    optimization.minimize = true;
+    optimization.minimizer = ["...", new CssMinimizerPlugin()];
   }
   return {
     context: path.resolve(__dirname, "src"),
     entry: path.resolve(__dirname, "src/index.js"),
     output: {
-      filename: "[hash].bundle.js",
+      filename: "[name].[contenthash].bundle.js",
       path: path.resolve(__dirname, "dist"),
       publicPath: "/",
     },
@@ -44,9 +43,7 @@ module.exports = (_env, argv) => {
         {
           test: /\.jsx?$/,
           exclude: /node_modules/,
-          use: {
-            loader: "babel-loader",
-          },
+          use: "babel-loader",
         },
         {
           test: /\.s?css$/,
@@ -60,13 +57,13 @@ module.exports = (_env, argv) => {
           },
         },
         {
-          test: /img\/card\/.+\.(jpe?g|png)$/i,
-          use: ["file-loader", "image-webpack-loader"],
+          test: /img\/card\/.+\.(jpe?g|png)$/i, // social images
+          type: "asset",
         },
         {
           test: /\.(jpe?g|png|gif)$/,
           exclude: /img\/(index|save-the-date|card)/,
-          use: ["url-loader", "image-webpack-loader"],
+          type: "asset",
         },
       ],
     },
