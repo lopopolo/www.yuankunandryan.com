@@ -44,9 +44,7 @@ module.exports = (_env, argv) => {
         {
           test: /\.jsx?$/,
           exclude: /node_modules/,
-          use: {
-            loader: "babel-loader",
-          },
+          use: "babel-loader",
         },
         {
           test: /\.s?css$/,
@@ -61,12 +59,12 @@ module.exports = (_env, argv) => {
         },
         {
           test: /img\/card\/.+\.(jpe?g|png)$/i,
-          use: ["file-loader", "image-webpack-loader"],
+          type: "asset",
         },
         {
           test: /\.(jpe?g|png|gif)$/,
           exclude: /img\/(index|save-the-date|card)/,
-          use: ["url-loader", "image-webpack-loader"],
+          type: "asset",
         },
       ],
     },
