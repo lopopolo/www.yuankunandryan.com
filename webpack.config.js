@@ -6,7 +6,7 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 const plugins = [
   new MiniCssExtractPlugin({
-    filename: "[hash].css",
+    filename: "[name].[contenthash].css",
     chunkFilename: "[id].css",
   }),
   new HtmlWebPackPlugin({
@@ -35,7 +35,7 @@ module.exports = (_env, argv) => {
     context: path.resolve(__dirname, "src"),
     entry: path.resolve(__dirname, "src/index.js"),
     output: {
-      filename: "[hash].bundle.js",
+      filename: "[name].[contenthash].bundle.js",
       path: path.resolve(__dirname, "dist"),
       publicPath: "/",
     },
