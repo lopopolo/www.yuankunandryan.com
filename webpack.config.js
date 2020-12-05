@@ -1,6 +1,5 @@
 const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
@@ -23,13 +22,13 @@ module.exports = (_env, argv) => {
   let cssLoader = "style-loader";
   let optimization = {
     minimize: false,
+    chunkIds: "deterministic",
+    moduleIds: "deterministic",
   };
   if (argv.mode === "production") {
     cssLoader = MiniCssExtractPlugin.loader;
-    optimization = {
-      minimize: true,
-      minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
-    };
+    optimization.minimize = true;
+    optimization.minimizer = ["...", new CssMinimizerPlugin()];
   }
   return {
     context: path.resolve(__dirname, "src"),
