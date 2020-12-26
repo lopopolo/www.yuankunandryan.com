@@ -1,12 +1,17 @@
 const path = require("path");
+const glob = require("glob");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const PurgeCSSPlugin = require("purgecss-webpack-plugin");
 
 const plugins = [
   new MiniCssExtractPlugin({
     filename: "[name].[contenthash].css",
     chunkFilename: "[id].css",
+  }),
+  new PurgeCSSPlugin({
+    paths: glob.sync(`${path.join(__dirname, "src")}/**/*`, { nodir: true }),
   }),
   new HtmlWebPackPlugin({
     template: "index.html",
@@ -24,6 +29,16 @@ module.exports = (_env, argv) => {
     minimize: false,
     chunkIds: "deterministic",
     moduleIds: "deterministic",
+    splitChunks: {
+      cacheGroups: {
+        styles: {
+          name: "styles",
+          test: /\.css$/,
+          chunks: "all",
+          enforce: true,
+        },
+      },
+    },
   };
   if (argv.mode === "production") {
     cssLoader = MiniCssExtractPlugin.loader;
