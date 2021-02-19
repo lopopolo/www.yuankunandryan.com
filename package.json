@@ -40,11 +40,6 @@
     "jquery": "^3.5.1",
     "popper.js": "^1.16.0"
   },
-  "babel": {
-    "presets": [
-      "@babel/preset-env"
-    ]
-  },
   "eslintConfig": {
     "env": {
       "browser": true,
