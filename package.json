@@ -17,9 +17,6 @@
   ],
   "repository": "github:lopopolo/www.yuankunandryan.com",
   "devDependencies": {
-    "@babel/core": "^7.12.17",
-    "@babel/preset-env": "^7.12.17",
-    "babel-loader": "^8.2.2",
     "css-loader": "^5.0.2",
     "css-minimizer-webpack-plugin": "^1.2.0",
     "glob": "^7.1.6",
