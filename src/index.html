@@ -55,8 +55,11 @@
         <div class="col-md align-self-center">
           <img
             class="img-fluid my-auto rounded"
-            srcset="<%= require('./img/index/hero.jpeg').srcSet %>"
-            src="<%= require('./img/index/hero.jpeg').src %>"
+            width="540"
+            height=719"
+            src="<%= require('./img/index/hero.jpg') %>"
+            srcset="<%= require('./img/index/hero.jpg') 500w,<%= require('./img/index/hero@2x.jpg') 1080w"
+            <%= require('./img/index/hero.jpeg').srcSet %>"
           />
         </div>
         <div class="col-md">
