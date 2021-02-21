@@ -60,19 +60,7 @@ module.exports = (_env, argv) => {
           use: [cssLoader, "css-loader", "sass-loader"],
         },
         {
-          test: /img\/(index|save-the-date)\/.+\.(jpe?g|png)$/i,
-          loader: "responsive-loader",
-          options: {
-            sizes: [500, 1000, 1500, 2000],
-          },
-        },
-        {
-          test: /img\/card\/.+\.(jpe?g|png)$/i, // social images
-          type: "asset",
-        },
-        {
           test: /\.(jpe?g|png|gif)$/,
-          exclude: /img\/(index|save-the-date|card)/,
           type: "asset",
         },
       ],
