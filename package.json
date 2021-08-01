@@ -23,7 +23,7 @@
     "html-webpack-plugin": "^5.3.1",
     "mini-css-extract-plugin": "^2.0.0",
     "purgecss-webpack-plugin": "^4.0.3",
-    "sass": "^1.35.0",
+    "sass": "^1.37.0",
     "sass-loader": "^12.1.0",
     "style-loader": "^3.2.1",
     "webpack": "^5.47.1",
